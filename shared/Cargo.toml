@@ -1,0 +1,13 @@
+[package]
+name = "shared"
+version = "0.1.0"
+license = "GPLv3"
+authors = ["Leon Heidelbach <leon.heidelbach@hhu.de>"]
+description = "This library contains shared code for all Nand2Tetris components"
+edition = "2021"
+workspace = ".."
+
+[dependencies]
+anyhow = "1.0.82"
+lazy_static = "1.4.0"
+owo-colors = { version = "4.0.0", features = ["supports-colors"] }

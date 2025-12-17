@@ -1,0 +1,8 @@
+[workspace]
+resolver = "2"
+members = [
+    "hack_assembler",
+    "jack_compiler",
+    "shared",
+    "vm"
+]

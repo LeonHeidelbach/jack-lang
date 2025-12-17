@@ -1,0 +1,13 @@
+pub(crate) mod ast;
+pub(crate) mod check;
+pub(crate) mod compile;
+pub(crate) mod controlflow;
+pub(crate) mod index;
+pub(crate) mod intermediate;
+pub(crate) mod intrinsics;
+pub(crate) mod jack;
+pub(crate) mod parse;
+pub(crate) mod serialize;
+pub(crate) mod tokenize;
+pub(crate) mod types;
+pub(crate) mod xml;

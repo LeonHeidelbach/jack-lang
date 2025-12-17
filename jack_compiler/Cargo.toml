@@ -1,0 +1,13 @@
+[package]
+name = "jack_compiler"
+version = "0.1.0"
+license = "GPLv3"
+authors = ["Leon Heidelbach <leon.heidelbach@hhu.de>"]
+description = "A compiler for the Jack programming language that targets hack binary code."
+edition = "2021"
+workspace = ".."
+
+[dependencies]
+anyhow = "1.0.83"
+lazy_static = "1.4.0"
+shared = { version = "0.1.0", path = "../shared" }

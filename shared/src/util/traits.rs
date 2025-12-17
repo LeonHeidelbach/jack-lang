@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////////////////////////
+// File: src/util/traits.rs
+// Description: Shared utility traits
+//
+// Author: Leon Heidelbach <leon.heidelbach@hhu.de>
+// Date: 01.05.2024
+//
+// License: GPLv3
+////////////////////////////////////////////////////////////////////////////////
+
+pub trait Serializable {
+  type Output;
+  fn serialize(&self) -> Self::Output;
+}

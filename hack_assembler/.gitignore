@@ -1,0 +1,2 @@
+# Allow .asm files in the tests/asm directory
+!**/tests/asm/*.asm

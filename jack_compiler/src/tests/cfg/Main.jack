@@ -1,0 +1,14 @@
+class Main {
+   function void main() {
+      var int i;
+
+      let i = 0;
+      do Output.printInt(i);
+
+      var int sum;
+      do Output.printInt(sum);
+
+      return;
+   }
+}
+

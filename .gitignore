@@ -1,0 +1,15 @@
+# Ignored direcotries
+.cache
+out
+bin
+build
+target
+
+# Allow .hack files in the tests/hack directory
+!**/tests/hack/*.hack
+
+# Ignore asm files
+*.asm
+
+# Allow example asm files for the hack_assembler examples directory
+!examples/hack_assembler/*.asm

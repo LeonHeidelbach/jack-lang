@@ -1,0 +1,577 @@
+// --------------------------- class declaration Ball-------------------------- ;
+// ----------------------- constructor declaration: new ----------------------- ;
+function Ball.new 0
+// ----------------------- allocate memory for 15 fields ---------------------- ;
+push constant 15
+call Memory.alloc 1
+pop pointer 0
+// -------------------------- variable assignment: x -------------------------- ;
+push argument 0
+pop this 0
+// -------------------------- variable assignment: y -------------------------- ;
+push argument 1
+pop this 1
+// ----------------------- variable assignment: leftWall ---------------------- ;
+push argument 2
+pop this 10
+// ---------------------- variable assignment: rightWall ---------------------- ;
+push argument 3
+push constant 6
+sub
+pop this 11
+// ----------------------- variable assignment: topWall ----------------------- ;
+push argument 4
+pop this 12
+// ---------------------- variable assignment: bottomWall --------------------- ;
+push argument 5
+push constant 6
+sub
+pop this 13
+// ------------------------- variable assignment: wall ------------------------ ;
+push constant 0
+pop this 14
+push pointer 0
+call Ball.show 1
+pop temp 0
+push pointer 0
+return
+// ------------------------ method declaration: dispose ----------------------- ;
+function Ball.dispose 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+// ------------------------- method declaration: show ------------------------- ;
+function Ball.show 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call Ball.draw 1
+pop temp 0
+push constant 0
+return
+// ------------------------- method declaration: hide ------------------------- ;
+function Ball.hide 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call Ball.draw 1
+pop temp 0
+push constant 0
+return
+// ------------------------- method declaration: draw ------------------------- ;
+function Ball.draw 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+push this 0
+push constant 5
+add
+push this 1
+push constant 5
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+return
+// ------------------------ method declaration: getLeft ----------------------- ;
+function Ball.getLeft 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push this 0
+return
+// ----------------------- method declaration: getRight ----------------------- ;
+function Ball.getRight 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push this 0
+push constant 5
+add
+return
+// -------------------- method declaration: setDestination -------------------- ;
+function Ball.setDestination 3
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+// ----------------------- variable assignment: lengthx ----------------------- ;
+push argument 1
+push this 0
+sub
+pop this 2
+// ----------------------- variable assignment: lengthy ----------------------- ;
+push argument 2
+push this 1
+sub
+pop this 3
+// -------------------------- variable assignment: dx ------------------------- ;
+push this 2
+call Math.abs 1
+pop local 0
+// -------------------------- variable assignment: dy ------------------------- ;
+push this 3
+call Math.abs 1
+pop local 1
+// ------------------------ variable assignment: invert ----------------------- ;
+push local 0
+push local 1
+lt
+pop this 7
+// ---------------------------- if statement begin ---------------------------- ;
+push this 7
+not
+if-goto L0
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: temp ------------------------ ;
+push local 0
+pop local 2
+// -------------------------- variable assignment: dx ------------------------- ;
+push local 1
+pop local 0
+// -------------------------- variable assignment: dy ------------------------- ;
+push local 2
+pop local 1
+// ---------------------- variable assignment: positivex ---------------------- ;
+push this 1
+push argument 2
+lt
+pop this 8
+// ---------------------- variable assignment: positivey ---------------------- ;
+push this 0
+push argument 1
+lt
+pop this 9
+goto L1
+label L0
+// --------------------------- else statement begin --------------------------- ;
+// ---------------------- variable assignment: positivex ---------------------- ;
+push this 0
+push argument 1
+lt
+pop this 8
+// ---------------------- variable assignment: positivey ---------------------- ;
+push this 1
+push argument 2
+lt
+pop this 9
+label L1
+// ----------------------------- if statement end ----------------------------- ;
+// -------------------------- variable assignment: d -------------------------- ;
+push constant 2
+push local 1
+call Math.multiply 2
+push local 0
+sub
+pop this 4
+// ---------------------- variable assignment: straightD ---------------------- ;
+push constant 2
+push local 1
+call Math.multiply 2
+pop this 5
+// ---------------------- variable assignment: diagonalD ---------------------- ;
+push constant 2
+push local 1
+push local 0
+sub
+call Math.multiply 2
+pop this 6
+push constant 0
+return
+// ------------------------- method declaration: move ------------------------- ;
+function Ball.move 0
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+push pointer 0
+call Ball.hide 1
+pop temp 0
+// ---------------------------- if statement begin ---------------------------- ;
+push this 4
+push constant 0
+lt
+not
+if-goto L2
+// ------------------------------- if condition ------------------------------- ;
+// -------------------------- variable assignment: d -------------------------- ;
+push this 4
+push this 5
+add
+pop this 4
+goto L3
+label L2
+// --------------------------- else statement begin --------------------------- ;
+// -------------------------- variable assignment: d -------------------------- ;
+push this 4
+push this 6
+add
+pop this 4
+// ---------------------------- if statement begin ---------------------------- ;
+push this 9
+not
+if-goto L4
+// ------------------------------- if condition ------------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 7
+not
+if-goto L6
+// ------------------------------- if condition ------------------------------- ;
+// -------------------------- variable assignment: x -------------------------- ;
+push this 0
+push constant 4
+add
+pop this 0
+goto L7
+label L6
+// --------------------------- else statement begin --------------------------- ;
+// -------------------------- variable assignment: y -------------------------- ;
+push this 1
+push constant 4
+add
+pop this 1
+label L7
+// ----------------------------- if statement end ----------------------------- ;
+goto L5
+label L4
+// --------------------------- else statement begin --------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 7
+not
+if-goto L8
+// ------------------------------- if condition ------------------------------- ;
+// -------------------------- variable assignment: x -------------------------- ;
+push this 0
+push constant 4
+sub
+pop this 0
+goto L9
+label L8
+// --------------------------- else statement begin --------------------------- ;
+// -------------------------- variable assignment: y -------------------------- ;
+push this 1
+push constant 4
+sub
+pop this 1
+label L9
+// ----------------------------- if statement end ----------------------------- ;
+label L5
+// ----------------------------- if statement end ----------------------------- ;
+label L3
+// ----------------------------- if statement end ----------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 8
+not
+if-goto L10
+// ------------------------------- if condition ------------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 7
+not
+if-goto L12
+// ------------------------------- if condition ------------------------------- ;
+// -------------------------- variable assignment: y -------------------------- ;
+push this 1
+push constant 4
+add
+pop this 1
+goto L13
+label L12
+// --------------------------- else statement begin --------------------------- ;
+// -------------------------- variable assignment: x -------------------------- ;
+push this 0
+push constant 4
+add
+pop this 0
+label L13
+// ----------------------------- if statement end ----------------------------- ;
+goto L11
+label L10
+// --------------------------- else statement begin --------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 7
+not
+if-goto L14
+// ------------------------------- if condition ------------------------------- ;
+// -------------------------- variable assignment: y -------------------------- ;
+push this 1
+push constant 4
+sub
+pop this 1
+goto L15
+label L14
+// --------------------------- else statement begin --------------------------- ;
+// -------------------------- variable assignment: x -------------------------- ;
+push this 0
+push constant 4
+sub
+pop this 0
+label L15
+// ----------------------------- if statement end ----------------------------- ;
+label L11
+// ----------------------------- if statement end ----------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 0
+push this 10
+gt
+not
+not
+if-goto L16
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: wall ------------------------ ;
+push constant 1
+pop this 14
+// -------------------------- variable assignment: x -------------------------- ;
+push this 10
+pop this 0
+goto L17
+label L16
+label L17
+// ----------------------------- if statement end ----------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 0
+push this 11
+lt
+not
+not
+if-goto L18
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: wall ------------------------ ;
+push constant 2
+pop this 14
+// -------------------------- variable assignment: x -------------------------- ;
+push this 11
+pop this 0
+goto L19
+label L18
+label L19
+// ----------------------------- if statement end ----------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 1
+push this 12
+gt
+not
+not
+if-goto L20
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: wall ------------------------ ;
+push constant 3
+pop this 14
+// -------------------------- variable assignment: y -------------------------- ;
+push this 12
+pop this 1
+goto L21
+label L20
+label L21
+// ----------------------------- if statement end ----------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 1
+push this 13
+lt
+not
+not
+if-goto L22
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: wall ------------------------ ;
+push constant 4
+pop this 14
+// -------------------------- variable assignment: y -------------------------- ;
+push this 13
+pop this 1
+goto L23
+label L22
+label L23
+// ----------------------------- if statement end ----------------------------- ;
+push pointer 0
+call Ball.show 1
+pop temp 0
+push this 14
+return
+// ------------------------ method declaration: bounce ------------------------ ;
+function Ball.bounce 5
+// -----------------------set this pointer to argument 0----------------------- ;
+push argument 0
+pop pointer 0
+// ---------------------- variable assignment: divLengthx --------------------- ;
+push this 2
+push constant 10
+call Math.divide 2
+pop local 2
+// ---------------------- variable assignment: divLengthy --------------------- ;
+push this 3
+push constant 10
+call Math.divide 2
+pop local 3
+// ---------------------------- if statement begin ---------------------------- ;
+push argument 1
+push constant 0
+eq
+not
+if-goto L24
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------ variable assignment: factor ----------------------- ;
+push constant 10
+pop local 4
+goto L25
+label L24
+// --------------------------- else statement begin --------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 2
+push constant 0
+lt
+not
+push argument 1
+push constant 1
+eq
+and
+push this 2
+push constant 0
+lt
+push argument 1
+push constant 1
+neg
+eq
+and
+or
+not
+if-goto L26
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------ variable assignment: factor ----------------------- ;
+push constant 20
+pop local 4
+goto L27
+label L26
+// --------------------------- else statement begin --------------------------- ;
+// ------------------------ variable assignment: factor ----------------------- ;
+push constant 5
+pop local 4
+label L27
+// ----------------------------- if statement end ----------------------------- ;
+label L25
+// ----------------------------- if statement end ----------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 14
+push constant 1
+eq
+not
+if-goto L28
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: newx ------------------------ ;
+push constant 506
+pop local 0
+// ------------------------- variable assignment: newy ------------------------ ;
+push local 3
+push constant 50
+neg
+call Math.multiply 2
+push local 2
+call Math.divide 2
+pop local 1
+// ------------------------- variable assignment: newy ------------------------ ;
+push this 1
+push local 1
+push local 4
+call Math.multiply 2
+add
+pop local 1
+goto L29
+label L28
+// --------------------------- else statement begin --------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 14
+push constant 2
+eq
+not
+if-goto L30
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: newx ------------------------ ;
+push constant 0
+pop local 0
+// ------------------------- variable assignment: newy ------------------------ ;
+push local 3
+push constant 50
+call Math.multiply 2
+push local 2
+call Math.divide 2
+pop local 1
+// ------------------------- variable assignment: newy ------------------------ ;
+push this 1
+push local 1
+push local 4
+call Math.multiply 2
+add
+pop local 1
+goto L31
+label L30
+// --------------------------- else statement begin --------------------------- ;
+// ---------------------------- if statement begin ---------------------------- ;
+push this 14
+push constant 3
+eq
+not
+if-goto L32
+// ------------------------------- if condition ------------------------------- ;
+// ------------------------- variable assignment: newy ------------------------ ;
+push constant 250
+pop local 1
+// ------------------------- variable assignment: newx ------------------------ ;
+push local 2
+push constant 25
+neg
+call Math.multiply 2
+push local 3
+call Math.divide 2
+pop local 0
+// ------------------------- variable assignment: newx ------------------------ ;
+push this 0
+push local 0
+push local 4
+call Math.multiply 2
+add
+pop local 0
+goto L33
+label L32
+// --------------------------- else statement begin --------------------------- ;
+// ------------------------- variable assignment: newy ------------------------ ;
+push constant 0
+pop local 1
+// ------------------------- variable assignment: newx ------------------------ ;
+push local 2
+push constant 25
+call Math.multiply 2
+push local 3
+call Math.divide 2
+pop local 0
+// ------------------------- variable assignment: newx ------------------------ ;
+push this 0
+push local 0
+push local 4
+call Math.multiply 2
+add
+pop local 0
+label L33
+// ----------------------------- if statement end ----------------------------- ;
+label L31
+// ----------------------------- if statement end ----------------------------- ;
+label L29
+// ----------------------------- if statement end ----------------------------- ;
+push pointer 0
+push local 0
+push local 1
+call Ball.setDestination 3
+pop temp 0
+push constant 0
+return
